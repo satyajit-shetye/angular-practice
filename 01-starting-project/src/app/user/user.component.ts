@@ -1,6 +1,7 @@
 import { Component, computed, input, output, signal } from '@angular/core';
 
 import { DUMMY_USERS } from '../dummy-users';
+import { User } from '../model';
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
@@ -39,15 +40,13 @@ export class UserComponent {
 
   // 3.Using input
 
-  avatar = input.required();
-  name = input.required<string>();
-  id = input.required<string>();
+  user = input.required<User>();
 
   selectUser = output<string>();
 
-  imagePath = computed(() => 'assets/users/' + this.avatar());
+  imagePath = computed(() => 'assets/users/' + this.user().avatar);
 
   onSelectUser() : void {
-    this.selectUser.emit(this.id());
+    this.selectUser.emit(this.user().id);
   }
 }
