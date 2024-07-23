@@ -1,7 +1,7 @@
 import { Component, computed, input, output, signal } from '@angular/core';
 
 import { DUMMY_USERS } from '../dummy-users';
-import { User } from '../model';
+import { IUser } from '../model';
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
@@ -13,6 +13,7 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 })
 export class UserComponent {
 
+  isSelected = input.required<boolean>();
   // 1. Basic
 
   // selectedUser: { id: string; name: string; avatar: string } =
@@ -40,7 +41,7 @@ export class UserComponent {
 
   // 3.Using input
 
-  user = input.required<User>();
+  user = input.required<IUser>();
 
   selectUser = output<string>();
 
