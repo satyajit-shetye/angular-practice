@@ -14,6 +14,6 @@
     }
   </ul>
   @if (isAddNewTask) {
-  <app-new-task (cancel)="onCancelPopup();"></app-new-task>
+  <app-new-task [userId]="id()" (close)="onClosePopup();"></app-new-task>
   }
 </section>

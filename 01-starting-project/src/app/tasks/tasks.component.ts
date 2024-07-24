@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
-import { ITask } from '../model';
+import { INewTask, ITask } from '../model';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TASKS } from '../dummy-tasks';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-tasks',
@@ -14,22 +15,24 @@ import { TASKS } from '../dummy-tasks';
 export class TasksComponent {
   name = input.required<string>();
   id = input.required<string>();
-  tasks: ITask[] = TASKS;
   isAddNewTask: boolean = false;
 
-  get selectedUserTasks(): ITask[] {
-    return this.tasks.filter((task) => task.userId === this.id());
+  constructor(private taskService: TaskService) {
   }
 
-  completeTask(id: string): void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+  get selectedUserTasks(): ITask[] {
+    return this.taskService.getSelectedUserTasks(this.id());
+  }
+
+  completeTask(taskId: string): void {
+    this.taskService.completeTask(taskId);
   }
 
   onAddTask(): void {
     this.isAddNewTask = true;
   }
 
-  onCancelPopup() {
+  onClosePopup() {
     this.isAddNewTask = false;
   }
 }
