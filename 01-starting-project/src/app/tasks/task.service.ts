@@ -7,9 +7,14 @@ import { INewTask, ITask } from '../model';
 })
 export class TaskService {
 
-  private tasks: ITask[] = TASKS;
+  private tasks: ITask[] = [];
 
-  constructor() { }
+  constructor() { 
+    const tasks = localStorage.getItem('tasks');
+    if(tasks) {
+      this.tasks = JSON.parse(tasks);
+    }
+  }
 
   getSelectedUserTasks(userId: string): ITask[] {
     return this.tasks.filter((task) => task.userId === userId);
@@ -17,6 +22,7 @@ export class TaskService {
 
   completeTask(taskId: string): void {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
+    this.saveTasks();
   }
 
   addTask(newTask: INewTask, userId: string): void {
@@ -27,5 +33,10 @@ export class TaskService {
       summary: newTask.summary,
       dueDate: newTask.dueDate,
     });
+    this.saveTasks();
+  }
+
+  private saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 }

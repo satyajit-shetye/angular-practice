@@ -24,10 +24,6 @@ export class TasksComponent {
     return this.taskService.getSelectedUserTasks(this.id());
   }
 
-  completeTask(taskId: string): void {
-    this.taskService.completeTask(taskId);
-  }
-
   onAddTask(): void {
     this.isAddNewTask = true;
   }
