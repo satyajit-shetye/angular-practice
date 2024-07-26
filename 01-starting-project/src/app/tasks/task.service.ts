@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { TASKS } from '../dummy-tasks';
 import { INewTask, ITask } from '../model';
 
 @Injectable({
