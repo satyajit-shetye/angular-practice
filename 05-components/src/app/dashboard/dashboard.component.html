@@ -1,0 +1,22 @@
+<main>
+  <div id="dashboard">
+    <app-dashboard-item
+      [title]="dashboardItems[0].title"
+      [image]="dashboardItems[0].image"
+    >
+      <app-server-status />
+    </app-dashboard-item>
+    <app-dashboard-item
+      [title]="dashboardItems[1].title"
+      [image]="dashboardItems[1].image"
+    >
+      <app-traffic />
+    </app-dashboard-item>
+    <app-dashboard-item
+      [title]="dashboardItems[2].title"
+      [image]="dashboardItems[2].image"
+    >
+      <app-support-tickets />
+    </app-dashboard-item>
+  </div>
+</main>
